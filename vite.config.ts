@@ -11,26 +11,33 @@ export default defineConfig(({ mode }) => ({
       'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self'; connect-src 'self' https://wybhtprxiwgzmpmnfceq.supabase.co;",
     } : undefined,
   },
-  plugins: [
-    react(),
-  ].filter(Boolean),
+  plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "."),
     },
   },
   build: {
-    // Security: Enable minification and uglyfication in production
     minify: mode === 'production' ? 'terser' : false,
     manifest: true,
     assetsDir: 'assets',
     outDir: 'dist',
     base: '/',
-    manifest: true,
-    assetsDir: 'assets',
+    sourcemap: mode === 'development',
+    terserOptions: {
+      compress: {
+        drop_debugger: mode === 'production',
+      },
+      mangle: {
+        safari10: true,
+      },
+    },
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
+          if (!assetInfo.name) {
+            return 'assets/[name]-[hash][extname]';
+          }
           const info = assetInfo.name.split('.')
           const extType = info[info.length - 1]
           if (/\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/i.test(assetInfo.name)) {
@@ -44,41 +51,14 @@ export default defineConfig(({ mode }) => ({
           }
           return `assets/${extType}/[name]-[hash][extname]`
         },
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
-      },
-    },
-    terserOptions: {
-      compress: {
-        drop_debugger: mode === 'production', // Remove debugger statements
-        // Ne pas utiliser pure_funcs pour garder console
-      },
-      mangle: {
-        safari10: true, // Handle Safari 10+ issues
-      },
-    },
-    rollupOptions: {
-      output: {
-        // Obfuscate chunk names in production
         chunkFileNames: (chunkInfo) => {
           const facadeModuleId = chunkInfo.facadeModuleId
             ? chunkInfo.facadeModuleId.split('/').pop()?.split('.')[0] || 'chunk'
             : 'chunk';
-          return mode === 'production' ? `assets/[hash]-${facadeModuleId.toLowerCase()}.js` : `assets/[name]-[hash].js`;
+          return mode === 'production' ? `assets/[hash]-${facadeModuleId.toLowerCase()}.js` : `assets/js/[name]-[hash].js`;
         },
-        entryFileNames: mode === 'production' ? 'assets/[hash].js' : 'assets/[name]-[hash].js',
-        assetFileNames: (assetInfo) => {
-          if (mode === 'production') {
-            if (assetInfo.name?.endsWith('.css')) {
-              return 'assets/[hash].css';
-            }
-            return 'assets/[hash].[ext]';
-          }
-          return 'assets/[name]-[hash].[ext]';
-        },
+        entryFileNames: mode === 'production' ? 'assets/[hash].js' : 'assets/js/[name]-[hash].js',
       },
     },
-    cssMinify: mode === 'production', // Minify CSS in production
-    sourcemap: mode === 'development', // Source maps only in dev
   },
 }));
