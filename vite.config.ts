@@ -22,6 +22,32 @@ export default defineConfig(({ mode }) => ({
   build: {
     // Security: Enable minification and uglyfication in production
     minify: mode === 'production' ? 'terser' : false,
+    manifest: true,
+    assetsDir: 'assets',
+    outDir: 'dist',
+    base: '/',
+    manifest: true,
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        assetFileNames: (assetInfo) => {
+          const info = assetInfo.name.split('.')
+          const extType = info[info.length - 1]
+          if (/\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/i.test(assetInfo.name)) {
+            return `assets/media/[name]-[hash][extname]`
+          }
+          if (/\.(png|jpe?g|gif|svg|webp|avif)(\?.*)?$/i.test(assetInfo.name)) {
+            return `assets/img/[name]-[hash][extname]`
+          }
+          if (/\.(woff2?|eot|ttf|otf)(\?.*)?$/i.test(assetInfo.name)) {
+            return `assets/fonts/[name]-[hash][extname]`
+          }
+          return `assets/${extType}/[name]-[hash][extname]`
+        },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+      },
+    },
     terserOptions: {
       compress: {
         drop_debugger: mode === 'production', // Remove debugger statements
