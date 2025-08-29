@@ -1,0 +1,174 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+bun-debug.log*
+
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+.next/
+.nuxt/
+.parcel-cache/
+
+# Environment files (PROTECTING SENSITIVE DATA)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.production
+.env.staging
+.env.example.local
+.env.*.local
+
+# Database and local files
+*.local
+*.db
+*.sqlite
+*.sqlite3
+
+# Supabase specific
+.supabase/
+supabase/.temp/
+supabase/functions/_shared/
+*.key
+
+# Vite specific
+.vite/
+
+# Cache directories
+.npm
+.yarn-integrity
+.cache
+.parcel-cache
+.eslintcache
+.stylelintcache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Package manager lockfiles (Bun used here)
+# Keep package-lock.json in version control for npm, but lockfiles for other package managers
+# Uncomment the appropriate lines below if needed:
+
+# If using npm
+# !package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+# bun.lockb
+
+# If using yarn
+# package-lock.json
+# !yarn.lock
+# pnpm-lock.yaml
+# bun.lockb
+
+# If using pnpm
+# package-lock.json
+# yarn.lock
+# !pnpm-lock.yaml
+# bun.lockb
+
+# If using bun
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+# !bun.lockb
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/cspell.json
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+.tmp/
+
+# Testing
+coverage/
+.nyc_output/
+.coverage/
+.istanbul/
+
+# Deployment specific (keep essential deployment config)
+# Uncomment if you need to version deployment files
+# *.toml (netlify.toml should be versioned for production deployment)
+
+# CRM specific temporary files
+*.bak
+*.backup
+crm_cache/
+exports/
+import_logs/
+queue_logs/
+
+# Security and sensitive data
+secrets/
+credentials/
+private/
+*.pem
+*.key
+*.crt
+*.cer
+passwords.json
+*secret*
+
+# Backup files
+*.orig
+*.rej
+*~
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional editor configs (uncomment to ignore globally)
+# .editorconfig
+# prettier.config.*
+# .prettierrc*
+
+# Local Netlify folder
+.netlify/
