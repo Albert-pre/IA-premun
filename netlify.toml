@@ -1,8 +1,9 @@
 [build]
   publish = "dist"
-  command = "npm run build"
+  command = "npm install && npm run build"
 
 [build.environment]
+  NODE_VERSION = "20.11.0"
   NODE_ENV = "production"
   VITE_SUPABASE_PROJECT_ID = "wybhtprxiwgzmpmnfceq"
   VITE_SUPABASE_URL = "https://wybhtprxiwgzmpmnfceq.supabase.co"
