@@ -51,7 +51,7 @@ export default defineConfig(({ mode }) => ({
     terserOptions: {
       compress: {
         drop_debugger: mode === 'production', // Remove debugger statements
-        pure_funcs: mode === 'production' ? ['console.log', 'console.warn'] : [],
+        // pure_funcs: mode === 'production' ? ['console.log', 'console.warn'] : [], // Désactivé pour garder console
       },
       mangle: {
         safari10: true, // Handle Safari 10+ issues
