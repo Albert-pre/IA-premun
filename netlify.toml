@@ -1,13 +1,11 @@
 [build]
   publish = "dist"
-  command = "npm install --include=dev && npm run build"
+  command = "npm install --include=dev && NODE_ENV=production npm run build"
 
 [build.environment]
   NODE_VERSION = "20.11.0"
   NPM_FLAGS = "--legacy-peer-deps"
   NETLIFY_USE_YARN = "false"
-  NODE_ENV = "development"
-  NODE_ENV = "production"
   VITE_SUPABASE_PROJECT_ID = "wybhtprxiwgzmpmnfceq"
   VITE_SUPABASE_URL = "https://wybhtprxiwgzmpmnfceq.supabase.co"
   VITE_SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind5Ymh0cHJ4aXdnem1wbW5mY2VxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTEwMzIwODksImV4cCI6MjA2NjYwODA4OX0.ctFmwHC_iitVB16WB7lY616lIp0CAHBUGRaoi56ruqc"
